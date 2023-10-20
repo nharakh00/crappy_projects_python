@@ -1,19 +1,58 @@
 from tkinter import *
 
-# Working on UI
 
+
+
+
+# UI
 
 # Creating Window For Our Calculator
 window = Tk()
 window.geometry("420x420")
 window.title("BMI Calculator")
 
+
+
+
+x = IntVar()
+
+def click():
+
+    global x
+
+    if x.get() == 0:
+        print("In standard mode")
+    elif x.get() == 1:
+        print("In Metric mode")
+    else:
+        print("pick a mode")
+
+
+
+
+
+
+
+
 # Creating the Top Title Label for our Calculator
-title = Label(window, text = "BMI Calculator")
+title = Label(window, text = "BMI Calculator",
+              fg = "Black",
+              bd = 10,
+              cursor = "dot",
+              font = ("Arial", 50),
+              pady = 2)
 title.pack()
 
+# Creating our radio buttons
+x = IntVar()
+height_radio_1 = Radiobutton(window, text="standard", variable = x, value = 0)
+height_radio_2 = Radiobutton(window, text ="metric", variable = x, value = 1)
+height_radio_1.pack()
+height_radio_2.pack()
+
+
 # Telling user to input height in inches
-height = Label(window, text = "Enter your height in inches")
+height = Label(window, text = "Enter your height in specified units")
 height.pack()
 
 # Entry bar for user height
@@ -28,8 +67,15 @@ weight.pack()
 h_entry = Entry(window, font = ("Arial", 15))
 h_entry.pack()
 
-button = Button(window, text ="Calculate")
+button = Button(window, text ="Calculate", command =click)
 button.pack()
+
+# Results
+result_num = Label(window, text = "")
+result_level = Label(window, text = "")
+
+result_num.pack()
+result_level.pack()
 
 
 
